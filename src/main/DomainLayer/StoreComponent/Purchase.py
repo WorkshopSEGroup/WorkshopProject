@@ -4,7 +4,8 @@ from src.Logger import logger
 
 
 class Purchase(object):
-    def __init__(self, products_list: [dict], total_price: float, store_name: str, username: str):
+    def __init__(self, products_list: [dict], total_price: float, store_name: str, username: str,
+                 purchase_time: date_time = date_time.now()):
         # product_list -> [{"product_name": str, "product_price": float, "amount": int}]
 
         # self.__purchase_id: int = purchase_id
@@ -12,7 +13,7 @@ class Purchase(object):
         self.__total_price:  float = total_price
         self.__store_name: str = store_name
         self.__username: str = username
-        self.__curr_date: date_time = date_time.now()
+        self.__curr_date: date_time = purchase_time
 
     def __repr__(self):
         return repr("Purchase")

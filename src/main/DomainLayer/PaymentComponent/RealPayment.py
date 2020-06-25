@@ -37,7 +37,7 @@ class RealPayment(PaymentSubject):
         """
         try:
             res = requests.post(self.__url,
-                                data={'action_type': 'pay', 'card_number': payment_details['card_number'],
+                                data={'action_type': 'pay', 'card_number': payment_details.get('card_number'),
                                       'month': payment_details.get('month'), 'year': payment_details.get('year'),
                                       'holder': payment_details.get('holder'), 'ccv': payment_details.get('ccv'),
                                       'id': payment_details.get('id')},

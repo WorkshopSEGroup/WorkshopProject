@@ -69,7 +69,7 @@ function StoreProducts(props) {
       </div>
 
       <div style={{marginTop: "3%", marginLeft: "1%", marginRight: "1%"}}>
-        <Table striped bordered hover >
+        <Table id='table' striped bordered hover >
           <thead>
               <tr>
                   <th>Product Name</th>

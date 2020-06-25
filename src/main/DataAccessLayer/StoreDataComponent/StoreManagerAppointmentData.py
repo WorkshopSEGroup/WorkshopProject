@@ -128,11 +128,11 @@ class StoreManagerAppointmentData:
         for data_obj in result:
             data_as_dictionary = {}
             if self.__attr_appointee_username in attributes_to_read:
-                data_as_dictionary[self.__attr_appointee_username] = data_obj.appointee_username
+                data_as_dictionary[self.__attr_appointee_username] = data_obj.appointee_username.username
             if self.__attr_store_name in attributes_to_read:
-                data_as_dictionary[self.__attr_store_name] = data_obj.store_name
+                data_as_dictionary[self.__attr_store_name] = data_obj.store_name.store_name
             if self.__attr_appointer_username in attributes_to_read:
-                data_as_dictionary[self.__attr_appointer_username] = data_obj.appointer_username
+                data_as_dictionary[self.__attr_appointer_username] = data_obj.appointer_username.username
             if self.__attr_can_edit_inventory in attributes_to_read:
                 data_as_dictionary[self.__attr_can_edit_inventory] = data_obj.can_edit_inventory
             if self.__attr_can_edit_policies in attributes_to_read:

@@ -30,8 +30,8 @@ function GuestRoleAPI(props){
 
     return(
 
-        <Container style={{width: props["screenWidth"], height: props["screenHeight"]}}>
-        <Jumbotron fluid>
+        <Container id='container' style={{width: props["screenWidth"], height: props["screenHeight"]}}>
+        <Jumbotron id='jumbotron' fluid>
             <Row>
                 <Col />
                 <Col xs={7}>
@@ -55,9 +55,9 @@ function GuestRoleAPI(props){
                     */}
              
         <Row>
-            <Button variant="secondary" size="lg" block as={Link} to="/register"> Register </Button>
-            <Button variant="secondary" size="lg" block as={Link} to="/login"> Login </Button>
-            <Button variant="secondary" size="lg" block as={Link} to="/stores"> Display Stores And Products Information </Button>
+            <Button id='register-btn' variant="secondary" size="lg" block as={Link} to="/register"> Register </Button>
+            <Button id='login-btn' variant="secondary" size="lg" block as={Link} to="/login"> Login </Button>
+            <Button id='display-store-btn' variant="secondary" size="lg" block as={Link} to="/stores"> Display Stores And Products Information </Button>
 
         </Row>
         </Container>

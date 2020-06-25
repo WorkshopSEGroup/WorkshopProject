@@ -31,7 +31,7 @@ class StatisticData:
             self.__attr_guests = "guests"
             self.__attr_subscribers = "subscribers"
             self.__attr_store_managers = "store_managers"
-            self.__attr_store_owners = "owners"
+            self.__attr_store_owners = "store_owners"
             self.__attr_system_managers = "system_managers"
             self.__attributes_as_dictionary = {self.__attr_date: self.__tbl.date,
                                                self.__attr_guests: self.__tbl.guests,

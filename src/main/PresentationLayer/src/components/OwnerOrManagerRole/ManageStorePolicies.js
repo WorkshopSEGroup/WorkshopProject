@@ -62,21 +62,21 @@ function ManageStorePolicies(props) {
         <h2> {storeName} - Manage Store Policies </h2>
       </div>
 
-     <Accordion>
-        <Card>
+     <Accordion id='accordion'>
+        <Card id='card'>
             {/******** Purchase Card *********/}
             <Card.Header>
-            <Accordion.Toggle as={Button} type="radio" variant="link" eventKey="0">
+            <Accordion.Toggle id='accordion-toggle' as={Button} type="radio" variant="link" eventKey="0">
                 Purchase Policy
             </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="0">
             <Card.Body>
 
-            <Container> 
+            <Container id='container'> 
             <div style={{marginTop:"2%" , marginLeft: "25%", marginRight: "25%", border: "1px solid", borderColor: "#CCCCCC"}}>
                 <h3 style={{marginTop:"2%"}}>Select action</h3>
-                <Form style={{marginRight:"5%" , marginLeft: "5%", marginBottom:"2%"}}>
+                <Form id='form' style={{marginRight:"5%" , marginLeft: "5%", marginBottom:"2%"}}>
                     <Row><Form.Check inline onClick={addPurchaseHandler} type="radio" label="Add Purchase Policy" name="formHorizontalRadios" id="Radios1"/>
                     </Row>
                     <Row><Form.Check inline onClick={editPurchaseHandler} type="radio" label="Edit Purchase Policy" name="formHorizontalRadios"id="Radios2"/>
@@ -107,27 +107,27 @@ function ManageStorePolicies(props) {
             </Card.Body>
             </Accordion.Collapse>
         </Card>
-        <Card>
+        <Card id='card-2'>
               {/***************** Discount card *******************/}
 
             <Card.Header>
-            <Accordion.Toggle as={Button} variant="link" eventKey="1">
+            <Accordion.Toggle id='accordion-toggle-2' as={Button} variant="link" eventKey="1">
                 Discount Policy
             </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="1">
             <Card.Body>
-            <Container> 
+            <Container id='container-2'> 
             <div style={{marginTop:"2%" , marginLeft: "25%", marginRight: "25%", border: "1px solid", borderColor: "#CCCCCC"}}>
                 <h3 style={{marginTop:"2%"}}>Select action</h3>
-                <Form style={{marginRight:"5%" , marginLeft: "5%", marginBottom:"2%"}}>
-                    <Row><Form.Check onClick={addDiscountHandler} type="radio" label="Add Discount Policy" name="formHorizontalRadios" id="Radios1"/>
+                <Form id='form-2' style={{marginRight:"5%" , marginLeft: "5%", marginBottom:"2%"}}>
+                    <Row><Form.Check onClick={addDiscountHandler} type="radio" label="Add Discount Policy" name="formHorizontalRadios" id="Radios5"/>
                     </Row>
-                    <Row><Form.Check inline onClick={addComplexDiscountPolicyHandler} type="radio" label="Add Complex Discount Policy" name="formHorizontalRadios" id="Radios3"/>
+                    <Row><Form.Check inline onClick={addComplexDiscountPolicyHandler} type="radio" label="Add Complex Discount Policy" name="formHorizontalRadios" id="Radios6"/>
                     </Row>
-                    <Row><Form.Check inline onClick={editDiscountHandler} type="radio" label="Edit Discount Policy" name="formHorizontalRadios" id="Radios2"/>
+                    <Row><Form.Check inline onClick={editDiscountHandler} type="radio" label="Edit Discount Policy" name="formHorizontalRadios" id="Radios7"/>
                     </Row>
-                    <Row><Form.Check inline onClick={deleteDiscountPolicyHandler} type="radio" label="Delete Discount Policy" name="formHorizontalRadios" id="Radios3"/>
+                    <Row><Form.Check inline onClick={deleteDiscountPolicyHandler} type="radio" label="Delete Discount Policy" name="formHorizontalRadios" id="Radios8"/>
                     </Row>
                 </Form>
             </div>
@@ -200,7 +200,7 @@ function PurchaseCombinationsForm(props) {
                     </Row>
                     <Row><Form.Check inline checked={operator === 'and'} onChange={(event => {setOperator('and')})} type="radio" label="Activate all policies" name="formHorizontalRadios"id="and_operator"/>
                     </Row>
-                    <Button variant='dark' onClick={setOperatorHandler}>Commit Change</Button>
+                    <Button id='commit-btn' variant='dark' onClick={setOperatorHandler}>Commit Change</Button>
                 </Form>
             </div>
     );

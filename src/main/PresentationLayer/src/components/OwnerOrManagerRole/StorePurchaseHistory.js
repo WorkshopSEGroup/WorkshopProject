@@ -47,7 +47,7 @@ function StorePurchaseHistory(props){
              {purchaseHistory.map(purchase => (
                 purchase['store_name'] === store ?
                 <div style={{marginTop:"1%" , marginLeft: "10%", marginRight: "10%", border: "1px solid", borderColor: "#CCCCCC"}}>
-                    <Table striped bordered hover >
+                    <Table id='table' striped bordered hover >
                       <thead>
                           <tr>
                               {/* <th>Buier</th> */}
@@ -70,7 +70,7 @@ function StorePurchaseHistory(props){
                         }
                       </tbody>
                     </Table>
-                    <Form style={{marginLeft:"3%"}}>
+                    <Form id='form' style={{marginLeft:"3%"}}>
                     <Row><p>Buyer: {purchase["nickname"]}</p></Row>
                     <Row><p>Date: {purchase["date"]}</p></Row>
                     <Row><p>Total Price: {purchase["total_price"]}</p></Row>

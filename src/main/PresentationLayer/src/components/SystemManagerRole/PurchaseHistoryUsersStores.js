@@ -89,7 +89,7 @@ function PurchaseHistoryUsersStores(props){
             </div>
 
             <div style={{marginTop:"1%" , marginLeft: "3%", marginRight: "3%"}}>
-             <Form >
+             <Form id='form'>
                  <Form.Group as={Row} style={{marginRight:"1%" , marginLeft: "1%"}}>
 
                  <div><Button variant="dark" id="purchase-view" disabled={choice === 0 || (storeNameInput === '' && userInput === '')} onClick={onViewHandler}>View</Button></div>
@@ -111,7 +111,7 @@ function PurchaseHistoryUsersStores(props){
          {purchaseHistory.map(purchase => (
                 // purchase['store_name'] === store ?
                 <div style={{marginTop:"1%" , marginLeft: "10%", marginRight: "10%", border: "1px solid", borderColor: "#CCCCCC"}}>
-                    <Table striped bordered hover >
+                    <Table id='table' striped bordered hover >
                       <thead>
                           <tr>
                               <th>Product Name</th>
@@ -132,7 +132,7 @@ function PurchaseHistoryUsersStores(props){
                         }
                       </tbody>
                     </Table>
-                    <Form style={{marginLeft:"3%"}}>
+                    <Form id='form-2' style={{marginLeft:"3%"}}>
                     <Row><p>Buyer: {purchase["nickname"]}</p></Row>
                     <Row><p>Store name: {purchase["store_name"]}</p></Row>
                     <Row><p>Date: {purchase["date"]}</p></Row>

@@ -69,7 +69,7 @@ class StoreData:
             if self.__attr_store_name in attributes_to_read:
                 data_as_dictionary[self.__attr_store_name] = data_obj.store_name
             if self.__attr_founder_username in attributes_to_read:
-                data_as_dictionary[self.__attr_founder_username] = data_obj.founder_username
+                data_as_dictionary[self.__attr_founder_username] = data_obj.founder_username.username
             output_lst.append(data_as_dictionary)
 
         return output_lst

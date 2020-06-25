@@ -52,16 +52,16 @@ function ShowStoreInfo(props){
     <div>
       <h1>{props.storeName}</h1>
       <div style={{marginTop: "3%", marginLeft: "1%", marginRight: "1%"}}>
-        <Accordion>
-          <Card>
+        <Accordion id='accordion'>
+          <Card id='card'>
             <Card.Header>
-              <Accordion.Toggle as={Button} variant="link" eventKey="0">
+              <Accordion.Toggle id='accordion-toggle' as={Button} variant="link" eventKey="0">
                 Store Owners
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="0">
               <Card.Body>
-                <Table striped bordered hover >
+                <Table id='table' striped bordered hover >
                   <tbody>
                       {
                           props.owners.map(owner => {
@@ -77,15 +77,15 @@ function ShowStoreInfo(props){
               </Card.Body>
             </Accordion.Collapse>
           </Card>
-          <Card>
+          <Card id='card-2'>
             <Card.Header>
-              <Accordion.Toggle as={Button} variant="link" eventKey="1">
+              <Accordion.Toggle id='accordion-toggle-2' as={Button} variant="link" eventKey="1">
                 Store Managers
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="1">
               <Card.Body>
-              <Table striped bordered hover color="black">
+              <Table id='table-2' striped bordered hover color="black">
                   <tbody>
                       {
                         props.managers == [] || props.managers == null ? <p>No Managers Exsist For The Store Yet!</p> :

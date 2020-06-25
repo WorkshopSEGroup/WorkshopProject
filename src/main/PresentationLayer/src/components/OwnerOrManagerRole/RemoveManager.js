@@ -64,10 +64,10 @@ function RemoveManager(props){
     return (
         <div style={{width: props["screenWidth"], height: props["screenHeight"]}}>
             <h2 style={{marginTop: "2%"}}>{selectedStore} - Remove Store Manager</h2>
-            <Form>
+            <Form id='form'>
                 <div style={{marginLeft: "30%", marginRight: "30%", marginTop: "2%" , border: "1px solid", borderColor: "#CCCCCC"}}>
-                    <Form.Group controlId="managers_appointees" onChange={ event => {setSubscriberNickname(event.target.value)}}>
-                        <Form.Label style={{marginTop: "2%"}}>Please choose a manager to remove:</Form.Label>
+                    <Form.Group id='form-group' controlId="managers_appointees" onChange={ event => {setSubscriberNickname(event.target.value)}}>
+                        <Form.Label id='form-label' style={{marginTop: "2%"}}>Please choose a manager to remove:</Form.Label>
                         <div style={{marginTop: "2%", marginLeft: "3%", marginRight: "3%", marginBottom:"3%"}}>
                             <Form.Control as="select">
                                 {managers.map(nickname => (
@@ -80,7 +80,7 @@ function RemoveManager(props){
             
                 </div>
                 <div style={{marginTop:"2%"}}>
-                    <Button variant="dark"  onClick={removeManagerHandler}>Commit</Button>
+                    <Button id='commit-btn' variant="dark"  onClick={removeManagerHandler}>Commit</Button>
                 </div>
             </Form>
         </div>

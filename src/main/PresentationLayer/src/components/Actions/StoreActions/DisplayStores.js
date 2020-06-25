@@ -37,11 +37,11 @@ function DisplayStores(props){
              <h2>Store and products info: </h2>
          </div>
          <div style={{marginTop:"1%" , marginLeft: "25%", marginRight: "25%", border: "1px solid", borderColor: "#CCCCCC"}}>
-             <Form >
-                <Form.Group  style={{marginTop:"2%"}} onChange={ event => {setSelectedStore(event.target.value)}}>
-                    <Form.Label>Please choose a store:</Form.Label>
+             <Form id="form">
+                <Form.Group id='form-group' style={{marginTop:"2%"}} onChange={ event => {setSelectedStore(event.target.value)}}>
+                    <Form.Label id="form-label">Please choose a store:</Form.Label>
                     <div style={{marginTop:"1%" , marginLeft: "3%", marginRight: "3%"}}>
-                      <Form.Control as="select">
+                      <Form.Control as="select" id="form-select">
                       <option value={""} >Select Store</option>
                           {stores.map(store => (
                               <option value={store}>{store}</option>
@@ -51,15 +51,15 @@ function DisplayStores(props){
                 </Form.Group>
 
 
-                <Form style={{marginRight:"5%" , marginLeft: "5%", marginBottom:"2%"}}>
-                    <Form.Label style={{marginLeft:"1%"}}>
+                <Form id="form-2" style={{marginRight:"5%" , marginLeft: "5%", marginBottom:"2%"}}>
+                    <Form.Label id="form-2-label" style={{marginLeft:"1%"}}>
                       Choose Display option:
                     </Form.Label>
                     <Row>
-                      <Form.Check inline onClick={(event => {setInfoType("storeInfo")})} type="radio" label="Store Info" name="formHorizontalRadios" id="Radios1"/>
+                      <Form.Check id="form-2-check-1" inline onClick={(event => {setInfoType("storeInfo")})} type="radio" label="Store Info" name="formHorizontalRadios" id="Radios1"/>
                     </Row>
                     <Row>
-                      <Form.Check inline onClick={(event => {setInfoType("productsInfo")})} type="radio" label="Store's Products" name="formHorizontalRadios" id="Radios2"/>
+                      <Form.Check id="form-2-check-2" inline onClick={(event => {setInfoType("productsInfo")})} type="radio" label="Store's Products" name="formHorizontalRadios" id="Radios2"/>
                     </Row>
                 </Form>
 
@@ -71,7 +71,7 @@ function DisplayStores(props){
                                   state:{storeName: selectedStore,
                                          displayOption: infoType}
                                   }}>
-              <Button type="reset" variant="dark" disabled={selectedStore === "" | infoType === ""}>Display</Button>
+              <Button id="display-button" type="reset" variant="dark" disabled={selectedStore === "" | infoType === ""}>Display</Button>
           </Link>
         </div> 
 

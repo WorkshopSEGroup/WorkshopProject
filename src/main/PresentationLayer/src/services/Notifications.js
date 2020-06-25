@@ -35,17 +35,14 @@ export const connect = async (host, username) => {
 
 export const setHandlers = async () => {
   socket.socket.on("message", (data) => {
-    // const {storeName, msg} = data;
-    //  const msgs = data['messages'];
-     // TODO: eden call to add messages to my msgs list 
-
     Notifications.addNotification(data['messages'], 'regular', '','')
   });
   socket.socket.on("agreement", (data) => {
-    // const msgs = data['messages'];
-    Notifications.addNotification(data['messages'], 'regular', data['username'],data['store'])
-    
+    Notifications.addNotification(data['messages'], 'agreement', data['username'],data['store'])
   });
+  // socket.socket.on("daily_cut", (data) => {
+  //     // TODO - eden should create an update-daily-cut function
+  // });
 };
 
 export const disconnect = () => {
@@ -73,4 +70,5 @@ export const logout = () => {
   socket.socket.emit("logout", { username: nickname.nickName });
 }
 
+// TODO - add func that cause 'ask_for_daily_cut_event'
 

@@ -179,7 +179,7 @@ class DataAccessFacadeTests(unittest.TestCase):
         (DataAccessFacade.get_instance()).write_store("not Eytan's store", "Eytan")
 
         result = (DataAccessFacade.get_instance()).read_stores([], founder_username="Eytan")['response']
-        new_result = [(e['store_name'], e['founder_username'].username) for e in result]
+        new_result = [(e['store_name'], e['founder_username']) for e in result]
         self.assertListEqual([("Eytan's store", "Eytan"),
                               ("not Eytan's store", "Eytan")], new_result)
 
@@ -196,7 +196,7 @@ class DataAccessFacadeTests(unittest.TestCase):
             (DataAccessFacade.get_instance()).update_stores("Eytan's store", new_founder_username="System manager")[
                 'response']
         self.assertEqual(1, result)
-        post_cond_result = [(e['store_name'], e['founder_username'].username) for e in
+        post_cond_result = [(e['store_name'], e['founder_username']) for e in
                             (DataAccessFacade.get_instance()).read_stores([], store_name="Eytan's store")['response']]
         self.assertListEqual([("Eytan's store", "System manager")], post_cond_result)
 
@@ -233,7 +233,7 @@ class DataAccessFacadeTests(unittest.TestCase):
 
     def test_read_products(self):
         result_lst = (DataAccessFacade.get_instance()).read_products([], "Eytan's product")['response']
-        res = [(result['product_name'], result['store_name'].store_name, result['price'], result['category'],
+        res = [(result['product_name'], result['store_name'], result['price'], result['category'],
                 result['amount'], result['purchase_type']) for result in result_lst]
         for r in res:
             self.assertEqual(("Eytan's product", "Eytan's store", 12.12, "Eytan's", 12, 0), r)
@@ -284,7 +284,7 @@ class DataAccessFacadeTests(unittest.TestCase):
             "Boss Anna", "Eytan's store",
             "Eytan", ["EDIT_INV", "CLOSE_STORE"])['response']
         self.assertTrue(result)
-        managers = [man['appointee_username'].username for man in
+        managers = [man['appointee_username'] for man in
                     (DataAccessFacade.get_instance()).read_store_manager_appointments(["appointee_username"],
                                                                                       appointee_username=
                                                                                       "Boss Anna")['response']]
@@ -302,8 +302,8 @@ class DataAccessFacadeTests(unittest.TestCase):
                                                                                         "appointer_username"],
                                                                                        ["EDIT_INV", "DEL_OWNER"]) \
             ['response']
-        result_tup = [(sma['appointee_username'].username, sma['store_name'].store_name,
-                       sma['appointer_username'].username, sma['can_edit_inventory'], sma['can_delete_owner'])
+        result_tup = [(sma['appointee_username'], sma['store_name'],
+                       sma['appointer_username'], sma['can_edit_inventory'], sma['can_delete_owner'])
                       for sma in result_dic]
         self.assertListEqual(result_tup, [('Anna', "Eytan's store", 'Eytan', True, False)])
 
@@ -313,8 +313,8 @@ class DataAccessFacadeTests(unittest.TestCase):
                                                                                        ["EDIT_INV", "DEL_OWNER"],
                                                                                        appointee_username="Anna") \
             ['response']
-        result_tup = [(sma['appointee_username'].username, sma['store_name'].store_name,
-                       sma['appointer_username'].username, sma['can_edit_inventory'], sma['can_delete_owner'])
+        result_tup = [(sma['appointee_username'], sma['store_name'],
+                       sma['appointer_username'], sma['can_edit_inventory'], sma['can_delete_owner'])
                       for sma in result_dic]
         self.assertListEqual(result_tup, [('Anna', "Eytan's store", 'Eytan', True, False)])
 
@@ -439,8 +439,8 @@ class DataAccessFacadeTests(unittest.TestCase):
                                                                                       "store_name",
                                                                                       "appointer_username"]) \
             ['response']
-        result_tup = [(soa['appointee_username'].username, soa['store_name'].store_name,
-                       soa['appointer_username'].username)
+        result_tup = [(soa['appointee_username'], soa['store_name'],
+                       soa['appointer_username'])
                       for soa in result_dic]
         self.assertListEqual(result_tup, [('Lady Anna', "Eytan's store", 'Eytan')])
 
@@ -449,8 +449,8 @@ class DataAccessFacadeTests(unittest.TestCase):
                                                                                       "appointer_username"],
                                                                                      appointee_username="Lady Anna") \
             ['response']
-        result_tup = [(soa['appointee_username'].username, soa['store_name'].store_name,
-                       soa['appointer_username'].username)
+        result_tup = [(soa['appointee_username'], soa['store_name'],
+                       soa['appointer_username'])
                       for soa in result_dic]
         self.assertListEqual(result_tup, [('Lady Anna', "Eytan's store", 'Eytan')])
 

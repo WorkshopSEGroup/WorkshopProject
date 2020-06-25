@@ -59,21 +59,21 @@ function ShoppingCart(props){
   return (
       <div style={{width: props["screenWidth"], height: props["screenHeight"]}}>
         <h1 style={{marginTop:"2%"}}>Shopping Cart</h1>
-        <Container>
+        <Container id='container'>
         
-        <Accordion style={{marginTop:"2%"}} >
+        <Accordion id='accordion' style={{marginTop:"2%"}} >
         { shoppingCart.map(basket => (
             <div>
-              <Card>
+              <Card id='card'>
                   <Card.Header>
-                  <Accordion.Toggle as={Button} type="radio" variant="link" eventKey="0">
+                  <Accordion.Toggle id='accordion-toggle' as={Button} type="radio" variant="link" eventKey="0">
                       Store: {basket["store_name"]}
                   </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey="0">
                     <Card.Body>
                 
-                        <Table striped bordered hover >
+                        <Table id='table' striped bordered hover >
                         <thead>
                             <tr>
                                 <th>

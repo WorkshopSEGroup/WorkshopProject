@@ -1,7 +1,7 @@
 import React from 'react';
-import { shallow, mount, render } from '../../enzyme';
+import { shallow, mount, render } from '../../../enzyme';
 
-import Login from '../GuestRole/Login'
+import Login from '../../GuestRole/Login'
 
 
 

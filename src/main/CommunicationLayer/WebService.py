@@ -23,18 +23,6 @@ app = Flask(__name__)
 CORS(app)
 
 socket = SocketIO(app, cors_allowed_origins='*', async_mode='eventlet')
-# # socket = SocketIO(app, logger=True, engineio_logger=True,
-# #                   cors_allowed_origins='*', async_mode='eventlet')
-
-# eventlet.monkey_patch()
-#
-# app = Flask(__name__)
-# CORS(app)
-# app.secret_key = os.environ.get('SECRET')
-# app.config['WTF_CSRF_SECRET_KEY'] = "\xae\x5c{Xasa\x3b\x8e\x83\x19\xad\x24\x19\asda"
-# socket = SocketIO(app, logger=True, engineio_logger=True,
-#                cors_allowed_origins='*', async_mode='eventlet')
-#
 
 # 1 - purchase
 # 2 - add+remove manager
@@ -271,10 +259,24 @@ def appoint_store_owner():
                 msg = f"New owner appointment at store {store_name} - action required!"
                 notify_all(store_name, {'username': appointee_nickname, 'messages': msg, 'store': store_name}, "agreement")
             elif response["response"]:
-                if add_subscriber_to_store(store_name, appointee_nickname):
-                    # TODO - we need to take into consideration LOGIN/LOGOUT
-                    print(_users)
+                # if add_subscriber_to_store(store_name, appointee_nickname, False):
+                #     print(_users)
+                #     # create_new_publisher()
+                #     if appointee_nickname in _users:
+                #         print(_users[appointee_nickname])
+                #         join_room(store_name, _users[appointee_nickname])
+                appointee_msg = {'messages':'Congratulations! you are now one of ' + store_name + ' owners', 'storename': store_name}
+                if appointee_nickname in _users:
+                    add_subscriber_to_store(store_name, appointee_nickname, True)
+                    # get_store(store_name).add_personal_msg(appointee_nickname, appintee_msg)
+                    _users_with_their_own_rooms.append(appointee_nickname)
                     join_room(store_name, _users[appointee_nickname])
+                    join_room(appointee_nickname, _users[appointee_nickname])
+                    socket.emit('message', msg=appointee_msg, room=appointee_nickname)
+                else:
+                    add_subscriber_to_store(store_name, appointee_nickname, False)
+                    get_store(store_name).add_personal_msg(appointee_nickname, appointee_msg)
+                    # join_room(appointee_nickname, _users[appointee_nickname])
             return jsonify(msg=response["msg"], data=response["response"])
     return jsonify(msg="Oops, communication error")
 
@@ -298,7 +300,7 @@ def handle_appointment_agreement_response():
                 status = StoreOwnerOrManagerRole.get_appointment_status(appointee_nickname, store_name)
                 if status == AppointmentStatus.APPROVED:
                     response = StoreOwnerOrManagerRole.appoint_additional_owner(appointee_nickname, store_name)
-                    add_subscriber_to_store(store_name, appointee_nickname)
+                    add_subscriber_to_store(store_name, appointee_nickname, False)
                     msg = f"New owner {appointee_nickname} appointed at store {store_name}!"
                     notify_all(store_name, {'username': appointee_nickname, 'messages': msg, 'store': store_name}, "agreement")
             return jsonify(msg=response["msg"])
@@ -661,16 +663,17 @@ def view_any_store_purchase_history():
 def get_visitors_cut():
     if request.is_json:
         request_dict = request.get_json()
-        # start_date = request_dict.get('start_date')
-        # start_date = request_dict.get('start_date')
-        # response = SystemManagerRole.get_visitors_cut(start_date, start_date)
-        response = {'msg': 'succc',
-                    'response': [{'date': datetime(2020, 6, 15), 'guests': 3, 'subscribers': 4, 'store_managers': 5, 'store_owners': 6, 'system_managers': 7},
-                                 {'date': datetime(2020, 6, 16), 'guests': 3, 'subscribers': 3, 'store_managers': 3, 'store_owners': 10, 'system_managers': 3},
-                                 {'date': datetime(2020, 6, 17), 'guests': 3, 'subscribers': 6, 'store_managers': 3, 'store_owners': 3, 'system_managers': 3},
-                                 {'date': datetime(2020, 6, 18), 'guests': 3, 'subscribers': 3, 'store_managers': 1, 'store_owners': 3, 'system_managers': 3},
-                                 {'date': datetime(2020, 6, 19), 'guests': 3, 'subscribers': 3, 'store_managers': 3, 'store_owners': 0, 'system_managers': 3},
-                                 {'date': datetime(2020, 6, 20), 'guests': 7, 'subscribers': 6, 'store_managers': 5, 'store_owners': 4, 'system_managers': 3}]}
+        start_date = request_dict.get('start_date')
+        end_date = request_dict.get('end_date')
+        # print(f'request = {request_dict}. start= {start_date}, end = {end_date}')
+        response = SystemManagerRole.get_visitors_cut(start_date, end_date)
+        # response = {'msg': 'succc',
+        #             'response': [{'date': datetime(2020, 6, 15), 'guests': 3, 'subscribers': 4, 'store_managers': 5, 'store_owners': 6, 'system_managers': 7},
+        #                          {'date': datetime(2020, 6, 16), 'guests': 3, 'subscribers': 3, 'store_managers': 3, 'store_owners': 10, 'system_managers': 3},
+        #                          {'date': datetime(2020, 6, 17), 'guests': 3, 'subscribers': 6, 'store_managers': 3, 'store_owners': 3, 'system_managers': 3},
+        #                          {'date': datetime(2020, 6, 18), 'guests': 3, 'subscribers': 3, 'store_managers': 1, 'store_owners': 3, 'system_managers': 3},
+        #                          {'date': datetime(2020, 6, 19), 'guests': 3, 'subscribers': 3, 'store_managers': 3, 'store_owners': 0, 'system_managers': 3},
+        #                          {'date': datetime(2020, 6, 20), 'guests': 7, 'subscribers': 6, 'store_managers': 5, 'store_owners': 4, 'system_managers': 3}]}
         if response:  # if not None
             return jsonify(msg=response['msg'], data=response['response'])
     return jsonify(msg="Oops, error with communication!", data=response)
@@ -712,7 +715,7 @@ def get_curr_user_nickname():
 _users = {}  # dict of <username>: <its session ID>
 _stores: [StorePublisher] = []  # list of StorePublisher
 _users_with_their_own_rooms = [] # list of usernames that subsribed to room with their own name
-
+_system_managers = [] # list <system_manager_nickname, sid, is_in_daily_cuts_window>
 
 # @socket.on('')
 @socket.on('connect')
@@ -729,6 +732,8 @@ def connect():
                 # print("before join")
                 join_room(room=store.store_name(), sid=_users[username])
                 print(f"username {username} is added as a subscriber to store {store.store_name()} publisher")
+    else:
+        TradeControlService.inc_todays_guests_counter()
 
     print(f"users list: {_users}")
 
@@ -769,7 +774,7 @@ def create_new_publisher(storename, username):
             # print(f"store = {store}")
             _stores.append(store)
             # print(f"{storename} has been added by {username}")
-            store.subscribe_owner(username)
+            store.subscribe_owner(username, True)
 
 
 def append_user_to_room(storename, username, sid):
@@ -841,36 +846,43 @@ def handle_login(data):
     username = data['username']
     user_sid = request.sid
     _users[username] = user_sid
+    print(_users)
     # user_sid = _users(username)
-    join_room(username, user_sid)
-    _users_with_their_own_rooms.append(username)
-    print (f"insert {username} to it's room. sid = {user_sid}")
-    for store in _stores:
-        if store.is_subscribed_to_store(username):
-            store_name = store.store_name()
-            print(f"search for msgs to {username} at store {store_name}")
-            join_room(room=store_name, sid=user_sid)
-            msgs = store.retrieveMsgs(username)
-            print (msgs)
-            for msg, event in msgs:
-                print (f"send msg '{msg}' only to {username}. event type is {event}")
-                socket.emit(event, msg, room=username)
+    if (TradeControlService.get_user_type() == 'OWNER'):
+        join_room(username, user_sid)
+        _users_with_their_own_rooms.append(username)
+        print (f"insert {username} to it's room. sid = {user_sid}")
+        for store in _stores:
+            if store.is_subscribed_to_store(username):
+                store_name = store.store_name()
+                print(f"search for msgs to {username} at store {store_name}")
+                join_room(room=store_name, sid=user_sid)
+                msgs = store.retrieveMsgs(username)
+                print (msgs)
+                for msg, event in msgs:
+                    print (f"send msg '{msg}' only to {username}. event type is {event}")
+                    socket.emit(event, msg, room=username)
+                appointee_msgs = store.get_personal_msgs(username)
+                for msg in appointee_msgs:
+                    print (f"send msg '{msg}' only to {username}")
+                    socket.emit('message', msg, room=username)
 
 def get_store(store_name) -> StorePublisher:
     for store in _stores:
         if store.store_name() == store_name:
+            # print(f"in get store, correct for {store} with {store.store_name()}")
             return store
     return None
 
 
-def add_subscriber_to_store(store_name, owner_nickname):
+def add_subscriber_to_store(store_name, owner_nickname, is_logged_in):
     store = get_store(store_name)
     if store is None:
         # print(f"store {store_name} is none, owner is {owner_nickname}")
         return False
     if store.is_subscribed_to_store(owner_nickname):
         return False
-    store.subscribe_owner(owner_nickname)
+    store.subscribe_owner(owner_nickname, is_logged_in)
     return True
 
 
@@ -887,9 +899,6 @@ def is_subscribed_to_store(store_name, nickname):
         return store.is_subscribed_to_store(nickname)
     # print(f"store {store_name} is none. nickname is {nickname}")
     return False
-
-
-
 
 @socket.on('logout')
 def logout_from_stores(data):
@@ -908,7 +917,7 @@ def logout_from_stores(data):
         if username in _users_with_their_own_rooms:
             leave_room(room=username, sid= sid)
             _users_with_their_own_rooms.remove(username)
-#     delete_user(username)
+        del _users[username]
     else:
         print(f"error with logout message at websocket. recieved: {data}")
 #
@@ -932,3 +941,14 @@ def websocket_logout(username):
         #         del _users[user_name]
         #         print (f"user list = {_users}")
 
+# TODO - add call
+def send_daily_cut_update(statistics_update):
+    for sys_man in _system_managers:
+        (nickname, sid, is_in_daily_cuts_window) = sys_man
+        if is_in_daily_cuts_window and sid is not None:
+            if not nickname in _users_with_their_own_rooms:
+                _users_with_their_own_rooms.append(nickname)
+                join_room(nickname, _users[nickname])
+            socket.emit('daily_cut', statistics_update, room=nickname)
+
+    pass

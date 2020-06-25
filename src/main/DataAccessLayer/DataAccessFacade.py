@@ -42,7 +42,6 @@ Our persistent domain objects:
 
 
 class DataAccessFacade:
-    # TODO: maybe add try-catch for each function.
     __instance = None
 
     @staticmethod
@@ -342,7 +341,8 @@ class DataAccessFacade:
                                   ("CLOSE_STORE", "can_close_store"),
                                   ("USERS_QUESTIONS", "can_answer_user_questions"),
                                   ("WATCH_PURCHASE_HISTORY", "can_watch_purchase_history")]
-
+        if type(lst_permissions) is tuple:
+            return lst_permissions
         output = []
         for i in range(len(map_per_name_to_column)):
             if map_per_name_to_column[i][0] in lst_permissions:
@@ -442,6 +442,8 @@ class DataAccessFacade:
             old_permissions_lst = []
         if new_permissions_lst is None:
             new_permissions_lst = []
+        elif len(new_permissions_lst) == 0:
+            new_permissions_lst = (False, False, False, False, False, False, False, False, False, False)
         try:
             return self.__proxy.execute(
                 [StoreManagerAppointmentData.get_instance().update(old_appointee_username, old_store_name,
@@ -451,7 +453,8 @@ class DataAccessFacade:
                                                                    new_appointer_username,
                                                                    *self.__prepare_permission_args(
                                                                        new_permissions_lst))])
-        except Exception:
+        except Exception as e:
+            print(e)
             return ret(False, self.__execution_failed_error_msg)
 
     def delete_store_manager_appointments(self, appointee_username: str = "", store_name: str = "",

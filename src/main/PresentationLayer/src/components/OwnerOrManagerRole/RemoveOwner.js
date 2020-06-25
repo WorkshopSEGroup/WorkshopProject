@@ -77,10 +77,10 @@ function RemoveOwner(props){
     return (
         <div style={{width: props["screenWidth"], height: props["screenHeight"]}}>
             <h2 style={{marginTop: "2%"}}>{selectedStore} - Remove Store Owner</h2>
-            <Form>
+            <Form id='form'>
                 <div style={{marginLeft: "30%", marginRight: "30%", marginTop: "2%" , border: "1px solid", borderColor: "#CCCCCC"}}>
-                    <Form.Group controlId="owners_appointees" onChange={ event => {setSubscriberNickname(event.target.value)}}>
-                        <Form.Label style={{marginTop: "2%"}}>Please choose a owner to remove:</Form.Label>
+                    <Form.Group id='form-group' controlId="owners_appointees" onChange={ event => {setSubscriberNickname(event.target.value)}}>
+                        <Form.Label id='form-label' style={{marginTop: "2%"}}>Please choose a owner to remove:</Form.Label>
                         <div style={{marginTop: "2%", marginLeft: "3%", marginRight: "3%", marginBottom:"3%"}}>
                             <Form.Control as="select">
                                 {owners.map(nickname => (
@@ -93,7 +93,7 @@ function RemoveOwner(props){
             
                 </div>
                 <div style={{marginTop:"2%"}}>
-                    <Button variant="dark"  onClick={removeOwnerHandler}>Commit</Button>
+                    <Button id='commit-btn' variant="dark" onClick={removeOwnerHandler}>Commit</Button>
                 </div>
             </Form>
         </div>

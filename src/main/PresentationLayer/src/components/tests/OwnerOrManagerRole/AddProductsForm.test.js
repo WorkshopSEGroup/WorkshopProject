@@ -1,7 +1,7 @@
 import React from 'react';
-import { shallow, mount, render } from '../../enzyme';
+import { shallow, mount, render } from '../../../enzyme';
 
-import AddProductsForm from '../OwnerOrManagerRole/AddProductsForm'
+import AddProductsForm from '../../OwnerOrManagerRole/AddProductsForm'
 
 
 
@@ -51,7 +51,7 @@ describe('Product Price Test Suite', () => {
         const wrapper = shallow(<AddProductsForm />);
         wrapper.find('#product-price').simulate('change',
             {
-                target: { value: 15 }
+                target: { valueAsNumber: 15 }
             });
         wrapper.update();
         expect(wrapper.find('#product-price').prop('value')).toEqual(15);
@@ -79,9 +79,23 @@ describe('Product Amount Test Suite', () => {
         const wrapper = shallow(<AddProductsForm />);
         wrapper.find('#product-amount').simulate('change',
             {
-                target: { value: 3 }
+                target: { valueAsNumber: 3 }
             });
         wrapper.update();
         expect(wrapper.find('#product-amount').prop('value')).toEqual(3);
+    })
+});
+
+describe('Purchase Type Test Suite', () => {
+
+    it('should change the state of the AddProductsForm component', () => {
+
+        const wrapper = shallow(<AddProductsForm />);
+        wrapper.find('#immidiate-purchase').simulate('change',
+            {
+                target: { value: 3 }
+            });
+        wrapper.update();
+        expect(wrapper.find('#immidiate-purchase').prop('value')).toEqual(3);
     })
 });

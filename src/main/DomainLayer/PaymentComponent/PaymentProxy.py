@@ -33,7 +33,7 @@ class PaymentProxy(PaymentSubject):
     @logger
     # need to check payment details with system once a system is set
     def commit_payment(self, payment_details: {'card_number': str, 'month': str, 'year': str, 'holder': str,
-                                               'ccv': str, 'id': str}) -> {'response': bool, 'msg': str}:
+                                               'ccv': str, 'id': str}) -> {'response': bool, 'msg': str, 'tid': int or None}:
         """
 
         :param payment_details:

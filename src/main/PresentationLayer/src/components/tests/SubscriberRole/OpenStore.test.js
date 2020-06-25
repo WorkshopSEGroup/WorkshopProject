@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow, mount, render } from '../../enzyme';
-import OpenStore from '../SubscriberRole/OpenStore'
+import { shallow, mount, render } from '../../../enzyme';
+import OpenStore from '../../SubscriberRole/OpenStore'
 
 
 
@@ -14,7 +14,10 @@ describe('OpenStore Test Suite', () => {
     it('should render the form', () => {
         const wrapper = shallow(<OpenStore />);  // shallow renders a single component each time. In other words, Enzyme won’t consider the child elements for the test.
 
-        expect(wrapper.find('form.open_store').exists()).toBeDefined(); // check that all the elements renders ok
+        // expect(wrapper.find('form.open_store').exists()).toBeDefined(); // check that all the elements renders ok
+        expect(wrapper.find('#container').exists()).toBeDefined();
+        expect(wrapper.find('#form').exists()).toBeDefined();
+        expect(wrapper.find('#form-label').exists()).toBeDefined();
         expect(wrapper.find('#open-store-text').exists()).toBeDefined();
         expect(wrapper.find('#open-store-button').exists()).toBeDefined();
 

@@ -61,8 +61,8 @@ class OwnerAPI extends React.Component {
     }
     render(){
         return(
-            <Container style={{width: this.props["screenWidth"], height: this.props["screenHeight"]}}>
-                <Jumbotron fluid>
+            <Container id='container' style={{width: this.props["screenWidth"], height: this.props["screenHeight"]}}>
+                <Jumbotron id='jumbotron' fluid>
                     <Row>
                         <Col />
                         <Col xs={7}>
@@ -71,7 +71,7 @@ class OwnerAPI extends React.Component {
                         <Col>
                             <div style={{marginLeft:"75%", marginTop:"3%"}}>
                             <Link>
-                                <IoMdNotifications class="notification-icon-effect" color="black" font-size="40px" onClick={this.notificationsHandler}/>
+                                <IoMdNotifications id='noti' class="notification-icon-effect" color="black" font-size="40px" onClick={this.notificationsHandler}/>
                                 { window.$notifications.length > 0 ?
                                     <div id="ex4">
                                         <span class="p1 fa-stack fa-2x has-badge" data-count={window.$notifications.length}></span>
@@ -90,9 +90,9 @@ class OwnerAPI extends React.Component {
                     </Row>
                 </Jumbotron>
                 
-                <Form.Group controlId="stores_ControlSelect2" onChange={ event => {this.setSelectedStore(event.target.value)}}>
-                <Form.Label>Please choose a store:</Form.Label>
-                <Form.Control as="select">
+                <Form.Group id='form-group' controlId="stores_ControlSelect2" onChange={ event => {this.setSelectedStore(event.target.value)}}>
+                <Form.Label id='form-label'>Please choose a store:</Form.Label>
+                <Form.Control id='form-select' as="select">
                     {/* <option value={""} >Select Store</option> */}
                     {this.state.ownedStores.map(store => (
                         <option value={store}>{store}</option>
@@ -129,53 +129,53 @@ class OwnerAPI extends React.Component {
                 */}
 
                 <Row>
-                    <Button variant="secondary" size="lg" block as={Link} to="/stores">
+                    <Button id='display-store-btn' variant="secondary" size="lg" block as={Link} to="/stores">
                         Display Stores And Products Information
                     </Button>
     
-                    <Button variant="secondary" size="lg" block as={Link} to="/openstore">
+                    <Button id='open-store-btn' variant="secondary" size="lg" block as={Link} to="/openstore">
                         Open Store
                     </Button>
     
-                    <Button variant="secondary" size="lg" block as={Link} to="/history">
+                    <Button id='personal-history-btn' variant="secondary" size="lg" block as={Link} to="/history">
                         View Personal Purchase History
                     </Button>
 
-                    <Button variant="secondary" size="lg" block as={Link} to={{pathname: "/manageinventory/" + this.state.selectedStore, 
+                    <Button id='manage-inv' variant="secondary" size="lg" block as={Link} to={{pathname: "/manageinventory/" + this.state.selectedStore, 
                                                                                store: this.state.selectedStore, props: this.props}} >
                         Manage Inventory
                     </Button>
 
-                    <Button variant="secondary" size="lg" block as={Link} to={{pathname: "/appointowner", 
+                    <Button id='appoint-owner' variant="secondary" size="lg" block as={Link} to={{pathname: "/appointowner", 
                                                                                store: this.state.selectedStore, props: this.props}}>
                         Appoint Additional Owner
                     </Button>
-                    <Button variant="secondary" size="lg" block as={Link} to={{pathname: "/removeowner", 
+                    <Button id='remove-owner' variant="secondary" size="lg" block as={Link} to={{pathname: "/removeowner", 
                                                                                store: this.state.selectedStore, props: this.props}}>
                         Remove Owner
                     </Button>
 
-                    <Button variant="secondary" size="lg" block as={Link} to={{pathname: "/appointmanager", 
+                    <Button id='appoint-manager' variant="secondary" size="lg" block as={Link} to={{pathname: "/appointmanager", 
                                                                                store: this.state.selectedStore, props: this.props}}>
                         Appoint Additional Manager
                     </Button>
 
-                    <Button variant="secondary" size="lg" block as={Link} to={{pathname: "/editpermissions", 
+                    <Button id='edit-perm' variant="secondary" size="lg" block as={Link} to={{pathname: "/editpermissions", 
                                                                                store: this.state.selectedStore, props: this.props}}>
                         Edit Manager’s Permissions
                     </Button>
 
-                    <Button variant="secondary" size="lg" block as={Link} to={{pathname: "/removemanager", 
+                    <Button id='remove-manager' variant="secondary" size="lg" block as={Link} to={{pathname: "/removemanager", 
                                                                                store: this.state.selectedStore, props: this.props}}>
                         Remove A Store Manager
                     </Button>
 
-                    <Button variant="secondary" size="lg" block as={Link} to={{pathname: "/storehistory", 
+                    <Button id='view-purchase-hist' variant="secondary" size="lg" block as={Link} to={{pathname: "/storehistory", 
                                                                              store: this.state.selectedStore, props: this.props}}>
                         View Store’s Purchase History
                     </Button>
 
-                    <Button variant="secondary" size="lg" block as={Link} to={{pathname: "/managestorepolicies", 
+                    <Button id='manage-policies' variant="secondary" size="lg" block as={Link} to={{pathname: "/managestorepolicies", 
                                                                                store: this.state.selectedStore, props: this.props}}>
                         Manage Store Policies
                     </Button>
@@ -184,7 +184,7 @@ class OwnerAPI extends React.Component {
                     { this.state.showNotifications ?
 
                          <div>
-                             <MDBContainer style={{width: "auto", position: "fixed", bottom: "11px", right: "11px", zIndex: 9999}}>
+                             <MDBContainer id='container-2' style={{width: "auto", position: "fixed", bottom: "11px", right: "11px", zIndex: 9999}}>
                                 { window.$notifications.map(noti => (
                                     <MDBNotification
                                         show

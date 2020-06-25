@@ -16,7 +16,8 @@ export async function addNotification(notification, msg_type, username, store){
 export  function removeNotification(notification_id){
     var new_ls = []
     window.$notifications.forEach(noti => {
-
+console.log(noti['id']);
+console.log(notification_id);
         if(noti['id'] !== notification_id)
             new_ls.push(noti)
     });

@@ -1,6 +1,6 @@
 import eventlet
 
-from src.main.CommunicationLayer import WebService, Websocket
+from src.main.CommunicationLayer import WebService
 from eventlet import wsgi
 
 if __name__ == "__main__":

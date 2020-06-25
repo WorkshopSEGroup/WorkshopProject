@@ -87,7 +87,7 @@ class PurchaseProducts extends React.Component{
 
   render(){
     return (
-      <Container style={{width: this.props["screenWidth"], height: this.props["screenHeight"]}}>
+      <Container id='container' style={{width: this.props["screenWidth"], height: this.props["screenHeight"]}}>
         <div>
           <h1 style={{marginTop: "2%"}}>Purchase Products</h1>
         </div>
@@ -101,7 +101,7 @@ class PurchaseProducts extends React.Component{
                 // purchaseProduct = [{product_name, product_price, amount}]
                 // purchase["products"].map(purchaseProduct => (
                   <div style={{marginRight: "2%", marginLeft:"2%"}}>
-                  <Table striped bordered hover >
+                  <Table id='table' striped bordered hover >
                     <thead>
                         <tr>
                             <th>Product Name</th>
@@ -133,7 +133,7 @@ class PurchaseProducts extends React.Component{
 
         {/* here we ask the user for all details needed for payment confirmation (for now address only) */}
 
-        <ProgressBar now={this.state.details_progress}/>
+        <ProgressBar id='progressbar' now={this.state.details_progress}/>
         {
           !this.state.delivery_details_filled ? 
           <div>
@@ -155,7 +155,7 @@ class PurchaseProducts extends React.Component{
               <Form.Control id="zip" value={this.state.zip} required type="text" placeholder="Zip" 
                   onChange={(event => {this.setState({zip: event.target.value})})} style={{marginTop: "1%"}} />
 
-              <Button variant="dark" style={{marginTop: "1%"}} onClick={event => this.setState({delivery_details_filled: true, details_progress: 50})} disabled={!this.isDeliveryFilled()}>
+              <Button id='next-button' variant="dark" style={{marginTop: "1%"}} onClick={event => this.setState({delivery_details_filled: true, details_progress: 50})} disabled={!this.isDeliveryFilled()}>
                 Next
               </Button>
           </div>
@@ -183,7 +183,7 @@ class PurchaseProducts extends React.Component{
               <Form.Control id="id" value={this.state.id} required type="text" placeholder="ID" 
                     onChange={(event => {this.setState({id: event.target.value})})} style={{marginTop: "1%"}} />
 
-              <Button variant="dark" style={{marginTop: "1%"}} onClick={this.handleConfirm} disabled={!this.isPaymentFilled() || this.state.lock_purchase}>
+              <Button id='confirm-button' variant="dark" style={{marginTop: "1%"}} onClick={this.handleConfirm} disabled={!this.isPaymentFilled() || this.state.lock_purchase}>
                 Confirm Purchase
               </Button>
           </div>

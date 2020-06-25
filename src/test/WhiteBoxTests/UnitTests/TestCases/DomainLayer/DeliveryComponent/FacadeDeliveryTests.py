@@ -2,11 +2,12 @@ import unittest
 from unittest.mock import MagicMock
 from src.main.DomainLayer.DeliveryComponent.DeliveryProxy import DeliveryProxy
 from src.main.DomainLayer.DeliveryComponent.RealDelivery import RealDelivery
+from src.main.DomainLayer.TradeComponent.TradeControl import TradeControl
 
 
 class FacadeDeliveryTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.__delivery_sys : DeliveryProxy = DeliveryProxy.get_instance()
+        self.__delivery_sys: DeliveryProxy = DeliveryProxy.get_instance()
         self.__real_delivery_mock = RealDelivery()
         self.__delivery_sys.set_real(self.__real_delivery_mock)
         self.__valid_username = "username"
@@ -60,6 +61,9 @@ class FacadeDeliveryTests(unittest.TestCase):
         # test invalid delivery cancellation
         self.__real_delivery_mock.cancel_supply = MagicMock(return_value={"response": False, "msg": "ok"})
         self.assertFalse(self.__delivery_sys.cancel_supply("1")["response"])
+
+    def tearDown(self) -> None:
+        (TradeControl.get_instance()).__delete__()
 
     if __name__ == '__main__':
         unittest.main()

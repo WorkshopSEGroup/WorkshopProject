@@ -135,7 +135,7 @@ class App extends React.Component{
             <Form inline id="form">
               <Col style={{marginLeft:"82%"}}>
                   <Link to={{pathname:'/viewcart', history: this.props}} >
-                       <IoMdCart class="fa-icon-effect" data-toggle="tooltip" data-placement="bottom" title="Shopping cart" size="90%" variant="outline-info" color='white'/>
+                       <IoMdCart id="cart" class="fa-icon-effect" data-toggle="tooltip" data-placement="bottom" title="Shopping cart" size="90%" variant="outline-info" color='white'/>
                   </Link>
               </Col>
               <Col>
@@ -145,7 +145,7 @@ class App extends React.Component{
                       searchOption: this.state.searchOption,
                       input: this.state.searchInput,
                       categories: this.state.categories
-                  }}} > <IoMdSearch  class="fa-icon-effect" data-toggle="tooltip" data-placement="bottom" title="Search" size="90%" color='white'/>
+                  }}} > <IoMdSearch id="searchby" class="fa-icon-effect" data-toggle="tooltip" data-placement="bottom" title="Search" size="90%" color='white'/>
                 </Link>
               </Col>
             </Form>

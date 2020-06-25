@@ -98,7 +98,7 @@ class ProductData:
             if self.__attr_product_name in attributes_to_read:
                 user_data_as_dictionary[self.__attr_product_name] = data_obj.product_name
             if self.__attr_store_name in attributes_to_read:
-                user_data_as_dictionary[self.__attr_store_name] = data_obj.store_name
+                user_data_as_dictionary[self.__attr_store_name] = data_obj.store_name.store_name
             if self.__attr_price in attributes_to_read:
                 user_data_as_dictionary[self.__attr_price] = data_obj.price
             if self.__attr_category in attributes_to_read:

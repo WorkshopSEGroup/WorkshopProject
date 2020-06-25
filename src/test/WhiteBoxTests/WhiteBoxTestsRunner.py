@@ -4,10 +4,10 @@
 import unittest
 # from src.test.WhiteBoxTests.UnitTests import TestCases
 # ---------------------------------- unit tests imports ----------------------------------------------------------------
-# from src.test.WhiteBoxTests.UnitTests.TestCases.DomainLayer.DeliveryComponent.FacadeDeliveryTests \
-#     import FacadeDeliveryTests as Uc1
-# from src.test.WhiteBoxTests.UnitTests.TestCases.DomainLayer.PaymentComponent.FacadePaymentTests \
-#     import FacadePaymentTests as Uc2
+from src.test.WhiteBoxTests.UnitTests.TestCases.DomainLayer.DeliveryComponent.FacadeDeliveryTests \
+     import FacadeDeliveryTests as Uc1
+from src.test.WhiteBoxTests.UnitTests.TestCases.DomainLayer.PaymentComponent.FacadePaymentTests \
+    import FacadePaymentTests as Uc2
 from src.main.DataAccessLayer.ConnectionProxy.Tables import rel_path
 from src.main.DataAccessLayer.DataAccessFacade import DataAccessFacade
 from src.test.WhiteBoxTests.UnitTests.TestCases.DomainLayer.StoreComponent.PurchasePolicyComposite.Leaves.\
@@ -85,8 +85,8 @@ class WhiteBoxTestsRunner:
     # add individual tests to the test suite
 # ---------------------------------- add unit tests --------------------------------------------------------------------
 #     TODO: for some reason they give error in runner but not in tests, check it out later
-#     suite.addTest(loader.loadTestsFromTestCase(Uc1))
-#     suite.addTest(loader.loadTestsFromTestCase(Uc2))
+    suite.addTest(loader.loadTestsFromTestCase(Uc1))
+    suite.addTest(loader.loadTestsFromTestCase(Uc2))
     suite.addTest(loader.loadTestsFromTestCase(Uc3))
     suite.addTest(loader.loadTestsFromTestCase(Uc4))
     suite.addTest(loader.loadTestsFromTestCase(Uc5))

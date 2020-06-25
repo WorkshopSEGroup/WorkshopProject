@@ -268,5 +268,9 @@ class TradeControlService:
     def get_curr_username():
         return TradeControl.get_instance().get_curr_username()
 
+    @staticmethod
+    def inc_todays_guests_counter():
+        TradeControl.get_instance().inc_todays_guests_counter()
+
     def __repr__(self):
         return repr("TradeFacadeService")

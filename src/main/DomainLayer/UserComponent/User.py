@@ -154,7 +154,7 @@ class User:
         return self.__registrationState.get_nickname()
 
     @logger
-    def get_login(self):
+    def get_login(self) -> Login:
         return self.__loginState
 
     @logger

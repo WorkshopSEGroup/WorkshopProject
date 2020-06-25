@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Container, Row, Col, Button, Dropdown, Jumbotron, Form} from 'react-bootstrap'
 import {Link, Redirect, Router} from 'react-router-dom'
 import * as theService from '../../services/communication';
+import * as theWebsocket from '../../services/Notifications';
 
 
 // WHAT A SUBSCRIBER CAN DO?
@@ -54,15 +55,15 @@ class systemManagerAPI extends React.Component{
         const promise = theService.logout(); // goes to register.js and sends to backend
         promise.then((data) => {
           alert(data["msg"]);
-          // TODO: yarin  
+            theWebsocket.logout()
             this.props.history.push("/");
         });
     };
 
     render(){
         return(
-            <Container style={{width: this.props["screenWidth"], height: this.props["screenHeight"]}}>
-                <Jumbotron fluid>
+            <Container id='container' style={{width: this.props["screenWidth"], height: this.props["screenHeight"]}}>
+                <Jumbotron id='jumbotron' fluid>
                     <Row>
                         <Col />
                         <Col xs={7}>
@@ -97,23 +98,23 @@ class systemManagerAPI extends React.Component{
     
     
                 <Row>
-                    <Button variant="secondary" size="lg" block as={Link} to="/stores">
+                    <Button id='display-store-btn' variant="secondary" size="lg" block as={Link} to="/stores">
                         Display Stores And Products Information
                     </Button>
     
-                    <Button variant="secondary" size="lg" block as={Link} to="/openstore">
+                    <Button id='open-store-btn' variant="secondary" size="lg" block as={Link} to="/openstore">
                         Open Store
                     </Button>
     
-                    <Button variant="secondary" size="lg" block as={Link} to="/history">
+                    <Button id='personal-history-btn' variant="secondary" size="lg" block as={Link} to="/history">
                         View Personal Purchase History
                     </Button>
 
-                    <Button variant="secondary" size="lg" block as={Link} to="/systemhistory">
+                    <Button id='purchase-history-btn' variant="secondary" size="lg" block as={Link} to="/systemhistory">
                         View System Purchase History
                     </Button>
 
-                    <Button variant="secondary" size="lg" block as={Link} to="/dailyvisitors">
+                    <Button id='visitors-cut-btn' variant="secondary" size="lg" block as={Link} to="/dailyvisitors">
                         Daily Visitors Cut
                     </Button>
                 </Row>

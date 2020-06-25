@@ -130,10 +130,10 @@ const FilterProductsHandler = () => {
         <h2>Search and filter Products </h2>
       </div>
 
-     <Accordion>
-        <Card>
+     <Accordion id='accordion'>
+        <Card id='card'>
             <Card.Header>
-            <Accordion.Toggle as={Button} type="radio" variant="link" eventKey="0">
+            <Accordion.Toggle id='accordion-toggle' as={Button} type="radio" variant="link" eventKey="0">
                 Search products
             </Accordion.Toggle>
             </Card.Header>
@@ -142,20 +142,20 @@ const FilterProductsHandler = () => {
                 
                 {/******** search component *********/}
                 <div style={{marginTop:"0.5%" , marginLeft: "10%", marginRight: "10%", border: "1px solid", borderColor: "#CCCCCC"}}>
-                    <Form>
+                    <Form id='form'>
                         <fieldset>
-                            <Form.Group as={Row} >
-                                <Form.Label as="legend" column sm={2}>
+                            <Form.Group id='form-group' as={Row} >
+                                <Form.Label id='form-label' as="legend" column sm={2}>
                                     Search products by:
                                 </Form.Label>
-                                <Form.Check inline onClick={(event => {setSearchType(1)})} type="radio" label="By name" name="formHorizontalRadios"id="Radios1"/>
-                                <Form.Check inline onClick={(event => {setSearchType(2)})} type="radio" label="By keyword" name="formHorizontalRadios"id="Radios2"/>
-                                <Form.Check inline onClick={(event => {setSearchType(3)})} type="radio" label="By category" name="formHorizontalRadios"id="Radios3"/>
-                                <Form.Control disabled={!searchType}  style={{marginRight:"2%" , marginLeft: "2%"}} onChange={(event => {setInput(event.target.value)})} placeholder="Enter relevant text..." />
+                                <Form.Check inline onClick={(event => {setSearchType(1)})} type="radio" label="By name" name="formHorizontalRadios" id="Radios1"/>
+                                <Form.Check inline onClick={(event => {setSearchType(2)})} type="radio" label="By keyword" name="formHorizontalRadios" id="Radios2"/>
+                                <Form.Check inline onClick={(event => {setSearchType(3)})} type="radio" label="By category" name="formHorizontalRadios" id="Radios3"/>
+                                <Form.Control id='form-control' disabled={!searchType}  style={{marginRight:"2%" , marginLeft: "2%"}} onChange={(event => {setInput(event.target.value)})} placeholder="Enter relevant text..." />
                             </Form.Group>
                         </fieldset>
-                        <Form.Group as={Row} style={{marginRight:"1%" , marginLeft: "1%"}}>
-                            <Button type="reset" variant="dark" disabled={!searchType | input === ""} onClick= {(event => {SearchProductsHandler()})} >Search</Button>
+                        <Form.Group id='form-group-2' as={Row} style={{marginRight:"1%" , marginLeft: "1%"}}>
+                            <Button id='search-btn' type="reset" variant="dark" disabled={!searchType | input === ""} onClick= {(event => {SearchProductsHandler()})} >Search</Button>
                         </Form.Group>
                     </Form>
                 </div>
@@ -163,9 +163,9 @@ const FilterProductsHandler = () => {
             </Card.Body>
             </Accordion.Collapse>
         </Card>
-        <Card>
+        <Card id='card-2'>
             <Card.Header>
-            <Accordion.Toggle as={Button} variant="link" eventKey="1">
+            <Accordion.Toggle id='accordion-toggle-2' as={Button} variant="link" eventKey="1">
                 Filter products
             </Accordion.Toggle>
             </Card.Header>
@@ -173,31 +173,31 @@ const FilterProductsHandler = () => {
             <Card.Body>
                 {/******** filter component *********/}
                 <div style={{marginTop:"0.5%" , marginLeft: "10%", marginRight: "10%", border: "1px solid", borderColor: "#CCCCCC"}}>
-                    <Form>
+                    <Form id='form-2'>
                         <fieldset>
-                        <Form.Group as={Row} style={{marginTop: "1%", marginRight:"4%" , marginLeft: "0%"}} >
-                            <Form.Label column sm="2">
-                                <Form.Check inline onClick={(event => {setFilterType(1)})} type="radio" label="By price range" name="formHorizontalRadios"id="Radios1"/>                                
+                        <Form.Group id='form-2-group-1' as={Row} style={{marginTop: "1%", marginRight:"4%" , marginLeft: "0%"}} >
+                            <Form.Label id='form-2-label-1' column sm="2">
+                                <Form.Check inline onClick={(event => {setFilterType(1)})} type="radio" label="By price range" name="formHorizontalRadios" id="Radios4"/>                                
                             </Form.Label>
                             <Col sm="10">
-                                <Form.Control type='number' min={0} disabled={(filterType !== 1)} placeholder="Enter min price" onChange={(event =>{
+                                <Form.Control id='form-control-2' type='number' min={0} disabled={(filterType !== 1)} placeholder="Enter min price" onChange={(event =>{
                                                                                                                         setFilterMinPrice(event.target.valueAsNumber); })}/>
-                                <Form.Control type='number' min={0} disabled={(filterType !== 1)} style={{marginTop: "1%"}} placeholder="Enter max price"  onChange={(event =>{
+                                <Form.Control id='form-control-3' type='number' min={0} disabled={(filterType !== 1)} style={{marginTop: "1%"}} placeholder="Enter max price"  onChange={(event =>{
                                                                                                                         setFilterMaxPrice(event.target.valueAsNumber);})}/>
                             </Col>
-                            <Form.Label column sm="2" >
-                                <Form.Check inline onClick={(event => {setFilterType(2)})} type="radio" label="By category" name="formHorizontalRadios"id="Radios1"/>                                
+                            <Form.Label id='form-2-label-2' column sm="2" >
+                                <Form.Check inline onClick={(event => {setFilterType(2)})} type="radio" label="By category" name="formHorizontalRadios" id="Radios5"/>                                
                             </Form.Label>
                             <Col sm="10">
-                                <Form.Control disabled={(filterType !== 2)} style={{marginTop: "1%"}} placeholder="Enter category" onChange={(event => {setFilterCategory(event.target.value)})}/>
+                                <Form.Control id='form-control-4' disabled={(filterType !== 2)} style={{marginTop: "1%"}} placeholder="Enter category" onChange={(event => {setFilterCategory(event.target.value)})}/>
                             </Col>
                                 
                         </Form.Group>
                         </fieldset>
                         
 
-                        <Form.Group as={Row} style={{marginRight:"3%" , marginLeft: "3%"}}>
-                            <Button type="reset" variant="dark" disabled={(
+                        <Form.Group id='form-2-group-2' as={Row} style={{marginRight:"3%" , marginLeft: "3%"}}>
+                            <Button id='filter-btn' type="reset" variant="dark" disabled={(
                                                             !(filterType === 1 && (filterMaxPrice !== -1 && filterMinPrice !== -1)) &&
                                                             !(filterType === 2 && filterCategory !== ""))}onClick= {(event => {FilterProductsHandler()})} >Filter</Button>
                         </Form.Group>
@@ -210,7 +210,7 @@ const FilterProductsHandler = () => {
       </Accordion>
         {/******** diplay products *********/}
       <div style={{marginTop: "3%", marginLeft: "1%", marginRight: "1%"}}>
-        <Table striped bordered hover >
+        <Table id='table' striped bordered hover >
           <thead>
               <tr>
                   <th>Store Name</th>

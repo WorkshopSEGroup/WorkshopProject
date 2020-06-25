@@ -75,7 +75,7 @@ class ProductsInPurchaseData:
             if self.__attr_purchase_id in attributes_to_read:
                 data_as_dictionary[self.__attr_purchase_id] = data_obj.purchase_id
             if self.__attr_product_name in attributes_to_read:
-                data_as_dictionary[self.__attr_purchase_id] = data_obj.product_name
+                data_as_dictionary[self.__attr_product_name] = data_obj.product_name
             if self.__attr_product_purchase_price in attributes_to_read:
                 data_as_dictionary[self.__attr_product_purchase_price] = data_obj.product_purchase_price
             if self.__attr_amount in attributes_to_read:

@@ -52,14 +52,14 @@ function DailyVisitorsCut(props){
                 <h1>View Visitors Cut</h1>
 
                 <div style={{marginTop:"2%" , marginLeft: "30%", marginRight: "30%", border: "1px solid", borderColor: "#CCCCCC"}}>
-                    <Container>
+                    <Container id='container'>
                         <h4 style={{marginTop:"2%"}}>Please enter dates range</h4>
-                        <Form>
+                        <Form id='form'>
 
-                            <Form.Label  style={{marginTop:"2%"}}>Start date:</Form.Label>
-                            <Form.Control required type="date" placeholder="Start date" max={(new Date()).toJSON().split('T')[0]} onChange={(event => {setStartDate(event.target.valueAsDate)})}/>
-                            <Form.Label  style={{marginTop:"2%"}}>End date:</Form.Label>
-                            <Form.Control required type="date" placeholder="End date" min={(new Date(startDate)).toJSON().split('T')[0]} max={(new Date()).toJSON().split('T')[0]} onChange={(event => {setEndDate(event.target.valueAsDate)})} disabled={startDate === null}/>
+                            <Form.Label id='form-label-start' style={{marginTop:"2%"}}>Start date:</Form.Label>
+                            <Form.Control id='form-start' required type="date" placeholder="Start date" max={(new Date()).toJSON().split('T')[0]} onChange={(event => {setStartDate(event.target.valueAsDate)})}/>
+                            <Form.Label id='form-label-end' style={{marginTop:"2%"}}>End date:</Form.Label>
+                            <Form.Control id='form-end' required type="date" placeholder="End date" min={(new Date(startDate)).toJSON().split('T')[0]} max={(new Date()).toJSON().split('T')[0]} onChange={(event => {setEndDate(event.target.valueAsDate)})} disabled={startDate === null}/>
 
                             <Button style={{marginTop:"2%", marginBottom:"2%"}} variant="dark" id="open-store-button" type='reset'
                             //  disabled={startDate === null || endDate === null}

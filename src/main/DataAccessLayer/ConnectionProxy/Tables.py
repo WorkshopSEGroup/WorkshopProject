@@ -17,8 +17,7 @@ def create_tables():
     Should happen once, only when the DB is empty.
     """
     tables = [Statistic, User, Store, Product, StoreManagerAppointment, StoreOwnerAppointment,
-              ProductsInBasket, Purchase, DiscountPolicy, ProductsInPurchase,
-              CompositeDiscountPolicy, ConditionalDiscountPolicy]
+              ProductsInBasket, Purchase, ProductsInPurchase]
     return database.create_tables(tables)
 
 

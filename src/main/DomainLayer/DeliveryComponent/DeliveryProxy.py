@@ -38,7 +38,7 @@ class DeliveryProxy(DeliverySubject):
 
     @logger
     def deliver_products(self, delivery_details: {'name': str, 'address': str, 'city': str, 'country': str,
-                                                  'zip': str}) -> {'response': bool, 'msg': str}:
+                                                  'zip': str}) -> {'response': bool, 'msg': str, 'tid': int or None}:
         """
         :delivery_details:
         :return: dict = {'response': bool, 'msg': str}:

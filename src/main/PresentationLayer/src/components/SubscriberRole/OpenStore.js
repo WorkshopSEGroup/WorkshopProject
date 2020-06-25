@@ -89,10 +89,10 @@ class OpenStore extends React.Component {
     return (
       <div style={{width: this.props["screenWidth"], height: this.props["screenHeight"]}}>
         <h1 style={{marginTop:"2%"}}>Open Store</h1>
-        <Container style={{marginTop:"2%"}}>
+        <Container id='container' style={{marginTop:"2%"}}>
           <div style={{marginTop:"0.5%" , marginLeft: "20%", marginRight: "20%", border: "1px solid", borderColor: "#CCCCCC"}}>
-            <Form className='open_store'>
-              <Form.Label style={{marginTop:"2%"}} >Choose a name for your new store:</Form.Label>
+            <Form id='form' className='open_store'>
+              <Form.Label id='form-label' style={{marginTop:"2%"}} >Choose a name for your new store:</Form.Label>
               <div style={{marginTop:"2%", marginRight:"2%", marginLeft:"2%", marginBottom:"2%"}} >
                 <Form.Control id="open-store-text" value={this.state.storeNameInput} type="text" placeholder="Store name" className="search" onChange={this.storeNameInputHandler}/>
               </div>

@@ -106,23 +106,23 @@ function SearchResults(props){
         // TODO - find a way to send to functions when checking one of the radio boxes!
         <div>
           <h1>Search Results</h1>
-        <Container>
-          <Form>
+        <Container id='container'>
+          <Form id='form'>
                 <Row>
                     Filter by: 
                     <Col>
                     <Row>
-                    <Form.Group as={Col}  md="8" controlId="bypricerange">
+                    <Form.Group id='form-group-1' as={Col}  md="8" controlId="bypricerange">
                         <Form.Check label="price range" type='radio' id={`inline-radio-1`} />
-                        <Form.Control required type="text" placeholder="min" className="minvalue" onChange={minInputHandler}/>
-                        <Form.Control required type="text" placeholder="max" className="maxvalue" onChange={maxInputHandler}/>
+                        <Form.Control id='min-price' required type="text" placeholder="min" className="minvalue" onChange={minInputHandler}/>
+                        <Form.Control id='max-price' required type="text" placeholder="max" className="maxvalue" onChange={maxInputHandler}/>
                     </Form.Group>
                     </Row>
                     </Col>
 
                     <Col>
                     <Row>
-                    <Form.Group>
+                    <Form.Group id='form-group-2'>
                         <Form.Check label="product rate" type='radio' id={`inline-radio-2`} />
                     </Form.Group>
                     </Row>
@@ -130,11 +130,11 @@ function SearchResults(props){
 
                     <Col>
                     <Row>
-                    <Form.Group>
+                    <Form.Group id='form-group-3'>
                         <Form.Check inline label="product category" type='radio' id={`inline-radio-3`} />
 
                         <Form.Group controlId="formGridState">
-                        <Form.Control as="select" value="Choose..." onClick={fetchCategories} onChange={onCategorySelect}>
+                        <Form.Control id='form-choose' as="select" value="Choose..." onClick={fetchCategories} onChange={onCategorySelect}>
                             <option>Choose...</option>
                             {categories.map(category => (
                                 <option>{category}</option>
@@ -155,14 +155,14 @@ function SearchResults(props){
                     </Col>
 
                     <Col>
-                        <Button variant="dark" onClick={onFilterClickHandler}>Filter</Button>
+                        <Button id='filter-button' variant="dark" onClick={onFilterClickHandler}>Filter</Button>
                     </Col>
                 
                 </Row>
             </Form>
             </Container>
 
-            <Container>
+            <Container id='container-2'>
             {products.map(product => (
             <h1>
                 <Row>
@@ -181,7 +181,7 @@ function SearchResults(props){
 
           
 
-            <Button variant="dark" block onClick={onAddToCartClickHandler}>Add to Cart</Button>
+            <Button id='add-button' variant="dark" block onClick={onAddToCartClickHandler}>Add to Cart</Button>
             </Container>
 
 </div>

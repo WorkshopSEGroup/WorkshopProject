@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow, mount, render } from '../../enzyme';
-import PurchaseHistoryUsersStores from '../SystemManagerRole/PurchaseHistoryUsersStores'
+import { shallow, mount, render } from '../../../enzyme';
+import PurchaseHistoryUsersStores from '../../SystemManagerRole/PurchaseHistoryUsersStores'
 
 
 
@@ -14,14 +14,17 @@ describe('PurchaseHistoryUsersStores Test Suite', () => {
     it('should render the form', () => {
         const wrapper = shallow(<PurchaseHistoryUsersStores />);  // shallow renders a single component each time. In other words, Enzyme won’t consider the child elements for the test.
 
-        expect(wrapper.find('form.purchase_history').exists()).toBeDefined(); // check that all the elements renders ok
-        expect(wrapper.find('#purchase-1').exists()).toBeDefined();
+        // expect(wrapper.find('form.purchase_history').exists()).toBeDefined(); // check that all the elements renders ok
+        // expect(wrapper.find('#purchase-1').exists()).toBeDefined();
         expect(wrapper.find('#purchase-radio-1').exists()).toBeDefined();
         expect(wrapper.find('#purchase-radio-2').exists()).toBeDefined();
         expect(wrapper.find('#purchase-username').exists()).toBeDefined();
         expect(wrapper.find('#purchase-storename').exists()).toBeDefined();
+        expect(wrapper.find('#form').exists()).toBeDefined();
         expect(wrapper.find('#purchase-view').exists()).toBeDefined();
-        expect(wrapper.find('#purchase-back').exists()).toBeDefined();
+        expect(wrapper.find('#back-btn').exists()).toBeDefined();
+        expect(wrapper.find('#table').exists()).toBeDefined();
+        expect(wrapper.find('#form-2').exists()).toBeDefined();
 
         //check that test fields are disabled when component renders first time
         expect(wrapper.find('#purchase-username').prop('disabled')).toEqual(true);

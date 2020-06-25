@@ -37,11 +37,11 @@ function PersonalPurchaseHistory(props){
     <div style={{width: props["screenWidth"], height: props["screenHeight"]}}>
       <h1 style={{marginTop:"1%"}}>Personal Purchase History</h1>
 
-      <Accordion style={{marginTop:"1%"}}>
+      <Accordion id='accordion' style={{marginTop:"1%"}}>
         {stores.map(store => (
-           <Card>
+           <Card id='card'>
            <Card.Header>
-           <Accordion.Toggle as={Button} type="radio" variant="link" eventKey="0">
+           <Accordion.Toggle id='accordion-toggle' as={Button} type="radio" variant="link" eventKey="0">
                Purchases from store {store}
            </Accordion.Toggle>
            </Card.Header>
@@ -53,7 +53,7 @@ function PersonalPurchaseHistory(props){
              {purchaseHistory.map(purchase => (
                 purchase['store_name'] === store ?
                 <div style={{marginTop:"1%" , marginLeft: "10%", marginRight: "10%", border: "1px solid", borderColor: "#CCCCCC"}}>
-                    <Table striped bordered hover >
+                    <Table id='table' striped bordered hover >
                       <thead>
                           <tr>
                               <th>Product Name</th>
@@ -74,7 +74,7 @@ function PersonalPurchaseHistory(props){
                         }
                       </tbody>
                     </Table>
-                    <Form style={{marginLeft:"3%"}}>
+                    <Form id='form' style={{marginLeft:"3%"}}>
                     <Row><p>Date: {purchase["date"]}</p></Row>
                     <Row><p>Total Price: {purchase["total_price"]}</p></Row>
                     </Form>

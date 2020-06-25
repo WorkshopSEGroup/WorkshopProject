@@ -59,9 +59,11 @@ class Product:
 
     @logger
     def set_purchase_type(self, purchase_type: int):
-        for type in PurchaseType:
-            if type.value == purchase_type:
-                self.__purchase_type = type
+        try:
+            PurchaseType(purchase_type)
+            return True
+        except Exception:
+            return False
 
     @logger
     def set_category(self, category):
